@@ -21,6 +21,8 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  var modRewrite = require('connect-modrewrite');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -76,9 +78,10 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
+              modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]']),
               connect.static('.tmp'),
               connect().use(
-                '/bower_components',
+                  '/bower_components',
                 connect.static('./bower_components')
               ),
               connect.static(appConfig.app)

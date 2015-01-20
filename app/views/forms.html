@@ -1,7 +1,7 @@
 <div class="container" ng-controller="FormsCtrl">
-	<form action="" method="POST" role="form" name="regform" novalidate="true" ng-submit="submit()" >
+	<form action="" method="POST" name="regform" novalidate >
 		<legend>Registration Forms</legend>
-	
+
 		<div class="form-group">
 			<label for="fname">First Name</label>
 			<input type="text" class="form-control" id="fname" name="fname" ng-model="currentUser.fname" required >
@@ -26,13 +26,13 @@
 			<label for="password">Password</label>
 			<input type="password" class="form-control" id="password" name="password" ng-model="currentUser.password" required >
 		</div>
-		
+
 		<div ng-if="regForm.$submitted">
 			<div ng-messages="currentUser.fname" >
 				<div ng-message="required" class="label label-danger">First name is required</div>
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary" >Submit</button>
+		<button type="submit" class="btn btn-primary" ng-click="submitForm()" >Submit</button>
 	</form>
 </div>

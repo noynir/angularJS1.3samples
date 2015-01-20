@@ -9,9 +9,9 @@
  */
 angular.module('samplesApp')
   .controller('FormsCtrl', function ($scope) {
-  	
+
   	$scope.submitForm=function(){
-  		if(regForm.$invalid) return;
+  		if(regform.$invalid) return;
 
   	};
   });

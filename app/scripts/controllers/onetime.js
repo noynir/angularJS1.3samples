@@ -10,7 +10,7 @@
   angular.module('samplesApp').controller('OnetimeCtrl', ['$scope', function($scope){
   		$scope.name="Nir Noy";
   		$scope.users=[];
-  		$scope.addToList=function(){ 
-  			$scope.users.push({name:$scope.name});
+  		$scope.addToList=function(){
+        $scope.users.push({name:$scope.name});
   		};
   }]);

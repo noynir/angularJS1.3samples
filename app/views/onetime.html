@@ -3,18 +3,18 @@
 <div ng-controller="OnetimeCtrl">
 	<div class="container">
 		<p>Hello my name is:{{::name}}</p>
-		<p>Hello his name is:{{name}}</p> 
+		<p>Hello his name is:{{name}}</p>
 		<input type="text" ng-model="name" id="input" class="form-control" >
-		<button type="button" class="btn btn-default" ng-click="addToList()">Add to List</button>		
+		<button type="button" class="btn btn-default" ng-click="addToList()">Add to List</button>
 	</div>
 	 <hr />
 	<div class="container">
 	 <ul class="list-group">
-	 	<li ng-repeat="user in users" class="list-group-item">{{user.name}}</li>
+	 	<li ng-repeat="user in ::users" class="list-group-item">{{user.name}}</li>
 	 </ul>
 
 	</div>
-	
+
 
 </div>
 
