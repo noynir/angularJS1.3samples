@@ -1,25 +1,41 @@
-<div class="container" ng-controller="FormsCtrl">
-	<form action="" method="POST" name="regform" novalidate >
-		<legend>Registration Forms</legend>
+<div class="container" ng-controller="FormsCtrl as form">
+	<form name="regform" novalidate  ng-submit="form.submitForm(regform)" >
+		<legend>Registration Form</legend>
 
 		<div class="form-group">
 			<label for="fname">First Name</label>
 			<input type="text" class="form-control" id="fname" name="fname" ng-model="currentUser.fname" required >
+      <div ng-messages="regform.fname.$error" ng-if="regform.fname.$invalid &&(regform.$submitted || regform.fname.$touched)" class="alert alert-danger" >
+        <div ng-message="required" >First name is required</div>
+      </div>
 		</div>
 
 		<div class="form-group">
 			<label for="lname">Last Name</label>
-			<input type="text" class="form-control" id="lname" name="lname" ng-model="currentUser.lname" required >
+			<input type="text" class="form-control" id="lname" name="lname" ng-model="currentUser.lname" minlength="4" required >
+      <div ng-messages="regform.lname.$error" ng-if="regform.lname.$invalid && (regform.$submitted || regform.lname.$touched)" class="alert alert-danger" >
+        <div ng-message="required" >Last name is required</div>
+        <div ng-message="minlength" >Last name must be at least 4 characters.</div>
+      </div>
 		</div>
 
-		<div class="form-group">
+		<div class="form-group" ng-class="{loading:regform.email.$pending}" >
 			<label for="email">Email</label>
-			<input type="email" class="form-control" id="email" name="email" ng-model="currentUser.email" required >
+			<input type="email" class="form-control" id="email" name="email" ng-model="currentUser.email" required gmail-validate email-exists >
+      <div ng-messages="regform.email.$error" ng-if="regform.email.$invalid && (regform.$submitted || regform.email.$touched)" class="alert alert-danger" >
+        <div ng-message="required" >Email is required</div>
+        <div ng-message="email" >Please enter a valid email</div>
+        <div ng-message="gmail" >Please enter a gmail email address</div>
+        <div ng-message="emailExists" >This email already exists</div>
+      </div>
 		</div>
 
 		<div class="form-group">
 			<label for="bdate">Birth Date</label>
-			<input type="text" class="form-control" id="bdate" name="bdate" ng-model="currentUser.bdate" required>
+			<input type="date" class="form-control" id="bdate" name="bdate" ng-model="currentUser.bdate" >
+      <div ng-messages="regform.bdate.$error" ng-messages-multiple="true" ng-if="regform.bdate.$invalid && (regform.$submitted || regform.bdate.$touched)" class="alert alert-danger" >
+        <div ng-message="date" >Please enter a date in mm/dd/yyyy format</div>
+      </div>
 		</div>
 
 		<div class="form-group">
@@ -27,12 +43,8 @@
 			<input type="password" class="form-control" id="password" name="password" ng-model="currentUser.password" required >
 		</div>
 
-		<div ng-if="regForm.$submitted">
-			<div ng-messages="currentUser.fname" >
-				<div ng-message="required" class="label label-danger">First name is required</div>
-			</div>
-		</div>
 
-		<button type="submit" class="btn btn-primary" ng-click="submitForm()" >Submit</button>
+
+		<input type="submit" class="btn btn-primary" value="Submit"  ></input>
 	</form>
 </div>

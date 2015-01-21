@@ -77,7 +77,59 @@ body {
     border-bottom: 0;
   }
 }
-input.ng-invalid.ng-touched{
+form{
+  padding: 5px;
+}
+form input{
+  margin-bottom: 3px;
+}
+form.ng-submitted input.ng-invalid, input.ng-invalid.ng-touched{
   background-color:pink;
   border:solid 2px red;
+}
+
+
+.loading {
+  position:relative;
+  color:#999;
+  font-size:1.5rem;
+
+}
+
+.loading input{
+  border:solid 2px green;
+}
+
+.loading:after {
+  border:3px solid white;
+  border-left-color:green;
+  border-right-color:green;
+  content:"";
+  width:25px;
+  border-radius:50px;
+  height:25px;
+  position:absolute;
+  z-index:1000;
+  animation: rotate 0.5s infinite;
+  -webkit-animation: rotate 0.5s infinite;
+  top:30px;
+  left:95%;
+}
+
+/*input.loading:after {*/
+  /*position:absolute;*/
+  /*top:0;*/
+  /*margin-top:25px;*/
+  /*right:30px;*/
+/*}*/
+
+
+@keyframes rotate {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
+
+@-webkit-keyframes rotate {
+  from { -webkit-transform:rotate(0deg); }
+  to { -webkit-transform:rotate(360deg); }
 }

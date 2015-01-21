@@ -22,6 +22,8 @@ module.exports = function (grunt) {
   };
 
   var modRewrite = require('connect-modrewrite');
+  var urlParser = require('url');
+  var qs = require('querystring');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -78,10 +80,24 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
+              connect().use('/checkUser',function(req,res,next){
+                var url=urlParser.parse(req.url);
+                var query=qs.parse(url.query);
+                var statusCode=200;
+                if(query.email && query.email==="nirn@gmail.com" )
+                {
+                  statusCode=500;
+                }
+                setTimeout(function(){
+                  res.writeHead(statusCode, {'Content-Type': 'text/plain'});
+                  res.end("user check");
+                },2000)
+
+              }),
               modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png$ /index.html [L]']),
               connect.static('.tmp'),
               connect().use(
-                  '/bower_components',
+                '/bower_components',
                 connect.static('./bower_components')
               ),
               connect.static(appConfig.app)
