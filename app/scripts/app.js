@@ -8,17 +8,17 @@
  *
  * Main module of the application.
  */
-angular
-  .module('samplesApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
+  angular
+    .module('samplesApp', [
+      'ngAnimate',
+      'ngAria',
+      'ngCookies',
+      'ngMessages',
+      'ngResource',
+      'ngRoute',
+      'ngSanitize',
+      'ngTouch'
+    ])
   .config(function ($routeProvider,$locationProvider) {
     $routeProvider
       .when('/', {
@@ -46,3 +46,4 @@ angular
         requireBase:false
       });
   });
+

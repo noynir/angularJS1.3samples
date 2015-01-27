@@ -9,11 +9,8 @@
  */
 angular.module('samplesApp')
   .controller('FormsCtrl', function ($scope,$log) {
-
   	this.submitForm=function(regForm){
-      $log.log($scope.currentUser);
       if(regForm.$invalid) return;
-
 
   	};
   });

@@ -80,7 +80,7 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect().use('/checkUser',function(req,res,next){
+               connect().use('/checkUser',function(req,res,next){
                 var url=urlParser.parse(req.url);
                 var query=qs.parse(url.query);
                 var statusCode=200;
